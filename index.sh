@@ -1,5 +1,6 @@
 
 #!/bin/bash -x
+
 validateName(){
 	userName=$1
 	userNamePattern="^([A-Z][a-zA-Z]){3}$"
@@ -27,7 +28,7 @@ validateEmail(){
 
 }
 
-checkVarialble(){
+checkName(){
 
 	validation=$1
 	echo
@@ -70,6 +71,6 @@ checkName $validation
 
 validation=0
 echo
-read -p "Enter Email " lastName
-validation="$( validateName $lastName )"
-checkName $validation
+read -p "Enter Email " userEmail
+validation="$( validateEmail $userEmail )"
+checkEmail $validation
