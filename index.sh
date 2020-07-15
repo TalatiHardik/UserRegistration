@@ -3,7 +3,7 @@
 
 validateName(){
 	userName=$1
-	userNamePattern="^[A-Z]([a-zA-Z]{2,})$"
+	userNamePattern="^[A-Z][a-zA-Z]{2,}$"
 	match=0
 	if [[ $userName =~ $userNamePattern ]]
 	then
@@ -42,6 +42,20 @@ validateNumber(){
 
 }
 
+
+validatePassword(){
+	userPassword=$@
+	userPasswordPattern="^[0-9a-zA-Z]{8,}$"
+	match=0
+	if [[ $userPassword =~ $userPasswordPattern ]]
+	then
+		match=1
+	fi
+	echo $match
+
+
+}
+
 checkName(){
 
 	validation=$1
@@ -55,15 +69,17 @@ checkName(){
 
 }
 
-checkEmail(){
+
+checkVariable(){
 
 	validation=$1
+	name=$2
 	echo
 	if [ $validation -eq 1 ]
 	then
-		echo "Entered Email is Valid"
+		echo "Entered $2 is Valid"
 	else
-		echo "Entered Email is invalid"
+		echo "Entered $2 is invalid"
 	fi
 
 }
@@ -81,7 +97,7 @@ checkNumber(){
 
 }
 
-echo "Welcome to UC4 Mobile Number"
+echo "Welcome to UC5 Password"
 
 validation=0
 read -p "Enter UserName " userName
@@ -101,7 +117,7 @@ validation=0
 echo
 read -p "Enter Email " userEmail
 validation="$( validateEmail $userEmail )"
-checkEmail $validation
+checkVariable $validation Email
 
 
 validation=0
@@ -109,3 +125,10 @@ echo
 read -p "Enter Mobile Number " userNumber
 validation="$( validateNumber $userNumber )"
 checkNumber $validation
+
+
+validation=0
+echo
+read -p "Enter Password (min 8 chars) " userPassword
+validation="$( validatePassword $userPassword )"
+checkVariable $validation Password
