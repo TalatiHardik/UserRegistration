@@ -47,7 +47,7 @@ validatePassword(){
 	userPassword=$@
 	userPasswordPattern="^[0-9a-zA-Z]{8,}$"
 	match=0
-	if [[ $userPassword =~ $userPasswordPattern ]]
+	if [[ $userPassword =~ $userPasswordPattern ]] && [[ $userPassword == *[A-Z]* ]]
 	then
 		match=1
 	fi
@@ -97,7 +97,7 @@ checkNumber(){
 
 }
 
-echo "Welcome to UC5 Password"
+echo "Welcome to UC6 Check for Upper Case in Password"
 
 validation=0
 read -p "Enter UserName " userName
