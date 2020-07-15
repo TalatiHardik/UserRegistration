@@ -1,6 +1,6 @@
 
 #!/bin/bash -x
-
+export LC_COLLATE=C
 validateName(){
 	userName=$1
 	userNamePattern="^[A-Z][a-zA-Z]{2,}$"
@@ -45,10 +45,10 @@ validateNumber(){
 
 validatePassword(){
 	userPassword=$@
-	userPasswordPattern="^[0-9a-zA-Z]{8,}$"
-	specialCasePattern="*[!@#$%^&*.]{1}*"
+	#userPasswordPattern="^*[0-9a-zA-Z]{8,}*$"
+	specialCasePattern="^[0-9a-zA-Z]*[!@#$%^&*\.]{1}[0-9a-zA-Z]*$"
 	match=0
-	if [[ $userPassword =~ $userPasswordPattern ]] && [[ $userPassword == *[A-Z]* ]] && [[ $userPassword == *[0-9]* ]] && [[ $userPassword =~ $specialCasedPattern ]]
+	if [[ ${#userPassword} -gt 8 ]] && [[ $userPassword == *[A-Z]* ]] && [[ $userPassword == *[0-9]* ]] && [[ $userPassword =~ $specialCasePattern ]]
 	then
 		match=1
 	fi
