@@ -27,7 +27,7 @@ checkName(){
 }
 
 validation=0
-echo "Welcome to UC1 Validate Name"
+echo "Welcome to UC2 Validate Last Name"
 read -p "Enter UserName " userName
 validation="$( validateName $userName )"
 checkName $validation
