@@ -47,7 +47,7 @@ validatePassword(){
 	userPassword=$@
 	userPasswordPattern="^[0-9a-zA-Z]{8,}$"
 	match=0
-	if [[ $userPassword =~ $userPasswordPattern ]] && [[ $userPassword == *[A-Z]* ]]
+	if [[ $userPassword =~ $userPasswordPattern ]] && [[ $userPassword == *[A-Z]* ]] && [[ $userPassword == *[0-9]* ]]
 	then
 		match=1
 	fi
