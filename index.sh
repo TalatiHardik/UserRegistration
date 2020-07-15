@@ -1,9 +1,8 @@
-
 #!/bin/bash -x
 
 validateName(){
 	userName=$1
-	userNamePattern="^([A-Z][a-zA-Z]){3}$"
+	userNamePattern="^[A-Z]([a-zA-Z]{2,})$"
 	match=0
 	if [[ $userName =~ $userNamePattern ]]
 	then
@@ -17,9 +16,23 @@ validateName(){
 
 validateEmail(){
 	userEmail=$1
-	userEmailPattern="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})$"
+	userEmailPattern="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}(([.][a-zA-Z]{2})?)$"
 	match=0
 	if [[ $userEmail =~ $userEmailPattern ]]
+	then
+		match=1
+	fi
+	echo $match
+
+
+}
+
+
+validateNumber(){
+	userNumber=$@
+	userNumberPattern="^[0-9]{2}[ ][0-9]{10}$"
+	match=0
+	if [[ $userNumber =~ $userNumberPattern ]]
 	then
 		match=1
 	fi
@@ -54,8 +67,22 @@ checkEmail(){
 
 }
 
+checkNumber(){
+
+	validation=$1
+	echo
+	if [ $validation -eq 1 ]
+	then
+		echo "Entered Number is Valid"
+	else
+		echo -e "Entered Number is invalid please put country code followed by space \n and 10 digit phone number"
+	fi
+
+}
+
+echo "Welcome to UC4 Mobile Number"
+
 validation=0
-echo "Welcome to UC3 Email Validation"
 read -p "Enter UserName " userName
 validation="$( validateName $userName )"
 checkName $validation
@@ -74,3 +101,10 @@ echo
 read -p "Enter Email " userEmail
 validation="$( validateEmail $userEmail )"
 checkEmail $validation
+
+
+validation=0
+echo
+read -p "Enter Mobile Number " userNumber
+validation="$( validateNumber $userNumber )"
+checkNumber $validation
