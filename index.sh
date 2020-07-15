@@ -46,8 +46,9 @@ validateNumber(){
 validatePassword(){
 	userPassword=$@
 	userPasswordPattern="^[0-9a-zA-Z]{8,}$"
+	specialCasePattern="*[!@#$%^&*.]{1}*"
 	match=0
-	if [[ $userPassword =~ $userPasswordPattern ]] && [[ $userPassword == *[A-Z]* ]] && [[ $userPassword == *[0-9]* ]]
+	if [[ $userPassword =~ $userPasswordPattern ]] && [[ $userPassword == *[A-Z]* ]] && [[ $userPassword == *[0-9]* ]] && [[ $userPassword =~ $specialCasedPattern ]]
 	then
 		match=1
 	fi
