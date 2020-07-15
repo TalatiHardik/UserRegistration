@@ -17,7 +17,7 @@ validateName(){
 
 validateEmail(){
 	userEmail=$1
-	userEmailPattern="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})$"
+	userEmailPattern="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2})?$"
 	match=0
 	if [[ $userEmail =~ $userEmailPattern ]]
 	then
